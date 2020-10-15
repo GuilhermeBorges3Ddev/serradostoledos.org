@@ -1,9 +1,10 @@
 .App {
   text-align: center;
+  height: 50% !important;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 10vmin;
   pointer-events: none;
 }
 
@@ -14,7 +15,13 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background: url(./assets/images/home_bg.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -22,6 +29,15 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+div.App-body.card.text-white.card-body {
+  height: 200px !important;
+  display: block !important;
+}
+
+.under-construction-txt{
+  font-size: 18px !important;
 }
 
 .App-link {
