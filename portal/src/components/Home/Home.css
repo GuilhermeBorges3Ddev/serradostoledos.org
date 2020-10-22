@@ -31,6 +31,13 @@
   color: white;
 }
 
+.home-navbar {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  top: 0!important;
+}
+
 div.App-body.card.text-white.card-body {
   height: 200px !important;
   display: block !important;

@@ -1,13 +1,20 @@
 import React from 'react';
 import { Card, Button, CardTitle, CardText } from 'reactstrap';
 
+import HomeNavbar from './subcomponents/HomeNavbar';
+
 import './Home.css';
 
 function Home() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
 
+    <div className="App">
+
+      
+      <HomeNavbar className="home-navbar"/>
+
+      <header className="App-header">
         <div className="App-body" >
           <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
             <CardTitle>
@@ -29,8 +36,8 @@ function Home() {
             </Button>
           </Card>
         </div>
-
       </header>
+
     </div>  
   );
 }
