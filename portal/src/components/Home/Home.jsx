@@ -1,9 +1,9 @@
 import React from 'react';
 import { Card, Button, CardTitle, CardText } from 'reactstrap';
 
-import './App.css';
+import './Home.css';
 
-function App() {
+function Home() {
   return (
     <div className="App">
       <header className="App-header">
@@ -35,4 +35,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
