@@ -27,10 +27,10 @@ const HomeNavbar = (props) => {
               <NavLink href="/">Conhecendo a serra</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/">Ver denúncias/feedbacks</NavLink>
+              <NavLink href="/ler-posts">Ver denúncias/feedbacks</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/">Realizar uma denúncia/feedback</NavLink>
+              <NavLink href="/criar-post">Realizar uma denúncia/feedback</NavLink>
             </NavItem>
           </Nav>
         </Collapse>
