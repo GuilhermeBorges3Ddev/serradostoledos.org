@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 //Routes usefull libs or files
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';  
+import { BrowserRouter as Router, Route } from 'react-router-dom';  
 import * as ROUTES from "./routes";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -16,10 +16,6 @@ import WritePublications from './areas/WritePublications/WritePublications';
 
 ReactDOM.render(
   <Router>
-
-    {/*<Route exact path={ROUTES.INITIAL}>
-      <Redirect to={ROUTES.HOME} />
-    </Route>*/}
     
     <Route exact path={ROUTES.HOME} component={Home} />
     

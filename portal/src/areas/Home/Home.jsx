@@ -1,21 +1,20 @@
 import React from 'react';
 import { Card, Button, CardTitle, CardText } from 'reactstrap';
 
-import HomeNavbar from './subcomponents/HomeNavbar';
+import HomeNavbar from '../../components/Navbar/HomeNavbar';
 
-import './Home.css';
+import '../../assets/styles/global.css';
 
 function Home() {
   
   return (
 
-    <div className="App">
+    <div className="Wrapper">
 
-      
       <HomeNavbar className="home-navbar"/>
 
-      <header className="App-header">
-        <div className="App-body" >
+      <header className="Wrapper-header">
+        <div className="Wrapper-body" >
           <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
             <CardTitle>
               <h1 className="text-warning"><i>serradostoledos.org</i></h1>
@@ -26,7 +25,7 @@ function Home() {
             </CardText>
             <Button>
                 <a
-                  className="App-link"
+                  className="Wrapper-link"
                   href="https://forms.gle/rbKdZStyWd5vVeVb6"
                   target="_blank"
                   rel="noopener noreferrer"
