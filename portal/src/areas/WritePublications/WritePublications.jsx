@@ -13,7 +13,10 @@ export default function WritePublications() {
                 <div className="Wrapper-body" >
                     <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
                     <CardTitle>
-                        <h1 className="text-warning"><i>write a publication</i></h1>
+                        <h1 className="text-warning text-capitalize">
+                            em construção
+                        </h1>
+                        <i>Área destinada à escrita de publicações...</i>
                     </CardTitle>
                     </Card>
                 </div>
