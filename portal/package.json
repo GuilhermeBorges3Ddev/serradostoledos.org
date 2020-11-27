@@ -3,17 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mdi/font": "^5.8.55",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "bootstrap": "^4.5.3",
+    "mdi-react": "^7.4.0",
     "node-sass": "^4.14.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-router-native": "^5.2.0",
-    "react-scripts": "3.4.3",
+    "react-scripts": "^4.0.1",
     "reactstrap": "^8.6.0"
   },
   "scripts": {
@@ -36,5 +38,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@iconify-icons/mdi": "^1.1.0",
+    "@iconify/react": "^1.1.3"
   }
 }
