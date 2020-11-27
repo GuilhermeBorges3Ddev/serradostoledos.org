@@ -1,9 +1,28 @@
+#Complaint-Or-Feedback {
+    margin-bottom: 20px; 
+}
+
+#Complaint-Or-Feedback-Checkbox {
+    height: 1.22em;
+    width: 1.22em;
+}
+
 .Post-Card-Area {
-    width: 500px;
-    height: 500px;
+    width: 550px;
+    height: 670px;
 }
 
 .User-Disclaimer {
     border: 8px sandybrown solid;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
+}
+
+.User-Disclaimer-Icon {
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    50% {
+      opacity: 0;
+    }
 }

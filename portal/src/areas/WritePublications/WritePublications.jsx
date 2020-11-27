@@ -1,22 +1,38 @@
 import React from 'react';
-import { Alert, Card, CardTitle, FormGroup, Input, Label } from 'reactstrap';
+import { Alert, Button, Card, CardTitle, FormGroup, Input, Label } from 'reactstrap';
 
 //Using the <<iconify.design>> library of React
 import { Icon } from '@iconify/react';
 import accountVoice from '@iconify-icons/mdi/account-voice';
 import alertIcon from '@iconify-icons/mdi/alert';
+import sendCircle from '@iconify-icons/mdi/send-circle';
+
+//Library react-google-recaptcha to deny DDoS
+import ReCAPTCHA from "react-google-recaptcha";
 
 import HomeNavbar from '../../components/Navbar/HomeNavbar';
 
 import "./WritePublications.scss";
 
-export default function WritePublications() {
+export default function WritePublications(props) {
+
+    function onChange(value) {
+        console.log("Captcha value:", value);
+    }
+
+    const recaptchaRef = React.createRef();
+
+    let onSubmit = () => {
+        const recaptchaValue = recaptchaRef.current.getValue();
+        props.onSubmit(recaptchaValue);
+    }
+
     return (
         <div className="Wrapper">
 
             <HomeNavbar className="home-navbar"/>
 
-            <header className="Wrapper-header">
+            <header className="Wrapper-header pt-5">
                 <div>
                     <Card 
                         body 
@@ -36,12 +52,23 @@ export default function WritePublications() {
                         <Alert className="User-Disclaimer" color="warning">
                             <h6 className="text-left">
                                 <div className="d-flex justify-content-center">
-                                    <Icon icon={alertIcon} width={40} height={40} />
+                                    <Icon className="User-Disclaimer-Icon" icon={alertIcon} width={40} height={40} />
                                 </div>
-                                Toda denúncia ou feedback realizado é completamente anônimo, 
-                                fique à vontade para expressar suas idéias da forma que quiser.
+                                <span>
+                                    Toda denúncia ou feedback realizado é completamente anônimo, 
+                                    fique à vontade para expressar suas idéias da forma que quiser.
+                                </span>
                             </h6>
                         </Alert>
+
+                        <FormGroup id="Complaint-Or-Feedback" check>
+                            <Label className="d-flex justify-content-between" check>
+                                <Input id="Complaint-Or-Feedback-Checkbox" type="checkbox" />{' '}
+                                <div className="ml-4 mt-2">
+                                    <h5>O conteúdo que escreverei é uma <u>denúncia</u>.</h5>
+                                </div>
+                            </Label>
+                        </FormGroup>
                         
                         <FormGroup>
                             <Label className="d-flex align-self-start"for="exampleText">
@@ -49,7 +76,23 @@ export default function WritePublications() {
                             </Label>
                             <Input type="textarea" name="text" id="exampleText" />
                         </FormGroup>
-                    
+
+                        <form onSubmit={onSubmit} >
+                            <ReCAPTCHA
+                                ref={recaptchaRef}
+                                sitekey="6Le8B-8ZAAAAAOhENHaSvlcOezYC0FlSMOjjhhMs"
+                                theme="dark"
+                                onChange={onChange}
+                            />
+                        </form>
+
+                        <div className="mt-4">
+                            <Button color="warning">
+                                <Icon icon={sendCircle} width={40} height={40} />
+                                {" "}Enviar denúncia/feedback
+                            </Button>{' '}
+                        </div>
+
                     </Card>
                 </div>
             </header>
