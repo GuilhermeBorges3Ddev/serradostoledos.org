@@ -1,23 +1,23 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-./portal/node_modules
-./portal/.pnp
-./portal/.pnp.js
+portal/node_modules
+portal/.pnp
+portal/.pnp.js
 
 # testing
-./portal/coverage
+portal/coverage
 
 # production
-./portal/build
+portal/build
 
 # misc
-./portal/.DS_Store
-./portal/.env.local
-./portal/.env.development.local
-./portal/.env.test.local
-./portal/.env.production.local
-./portal/.eslintcache
+portal/.DS_Store
+portal/.env.local
+portal/.env.development.local
+portal/.env.test.local
+portal/.env.production.local
+portal/.eslintcache
 
 npm-debug.log*
 yarn-debug.log*
