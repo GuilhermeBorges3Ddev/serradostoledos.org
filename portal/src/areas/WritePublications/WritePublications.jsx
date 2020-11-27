@@ -22,7 +22,7 @@ export default function WritePublications(props) {
     function onChange(value) {
         console.log("Captcha value:", value.length);
         if(value.length > 100) {
-            setDisableButton(false);
+            setTimeout(setDisableButton(false), 3000);
         }
     }
 
