@@ -29,9 +29,8 @@ import "./WritePublications.scss";
 
 export default function WritePublications(props) {
 
-    //The props ::buttonLabel:: and ::className:: was used on the reactstrap modal 
+    //The props ::buttonLabel:: was used on the reactstrap modal 
     const {
-        buttonLabel,
         className
     } = props;
 
@@ -43,7 +42,7 @@ export default function WritePublications(props) {
     const toggle = () => setModal(!modal);
 
     function onChange(value) {
-        console.log("Captcha value:", value.length);
+        //console.log("Captcha value:", value.length);
         if(value.length > 100) {
             setTimeout(setDisableButton(false), 3000);
         }
