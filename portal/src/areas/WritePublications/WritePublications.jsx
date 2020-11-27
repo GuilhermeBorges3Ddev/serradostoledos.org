@@ -1,5 +1,18 @@
 import React, { useState } from 'react';
-import { Alert, Button, Card, CardTitle, FormGroup, Input, Label } from 'reactstrap';
+
+import { 
+        Alert, 
+        Button, 
+        Card, 
+        CardTitle, 
+        FormGroup, 
+        Input, 
+        Label,
+        Modal, 
+        ModalHeader, 
+        ModalBody, 
+        ModalFooter
+} from 'reactstrap';
 
 //Using the <<iconify.design>> library of React
 import { Icon } from '@iconify/react';
@@ -16,8 +29,18 @@ import "./WritePublications.scss";
 
 export default function WritePublications(props) {
 
+    //The props ::buttonLabel:: and ::className:: was used on the reactstrap modal 
+    const {
+        buttonLabel,
+        className
+    } = props;
+
     //State created to send the complaint or feedback if the reCAPTCHA is valid
     const [disableButton, setDisableButton ] = useState(true);
+
+    //The two states bellow was used on the reactstrap modal too
+    const [modal, setModal] = useState(false);
+    const toggle = () => setModal(!modal);
 
     function onChange(value) {
         console.log("Captcha value:", value.length);
@@ -85,10 +108,29 @@ export default function WritePublications(props) {
                         </form>
 
                         <div className="mt-4">
-                            <Button color="warning" disabled={disableButton} className={`${disableButton ? 'Send-Button-Disabled' : 'Send-Button-Enabled'}`}>
+                            
+                            <Button 
+                                color="warning" 
+                                disabled={disableButton} 
+                                className={`${disableButton ? 'Send-Button-Disabled' : 'Send-Button-Enabled'}`}
+                                onClick={toggle}
+                            >    
                                 <Icon icon={sendCircle} width={40} height={40} />
                                 {" "}Enviar denúncia/feedback
                             </Button>{' '}
+
+                            <Modal isOpen={modal} toggle={toggle} className={className}>
+                                <ModalHeader toggle={toggle}>Não desista de nós! </ModalHeader>
+                                    <ModalBody>
+                                            A funcionalidade de envio da sua denúncia ou feedback ainda está sendo desenvolvida.
+                                            A previsão de lançamento desta funcionalidade é para o dia 01/12/2020.
+                                    </ModalBody>
+                                    <ModalFooter>
+                                        <Button color="primary" onClick={toggle}>Ok,</Button>{' '}
+                                        {/*<Button color="secondary" onClick={toggle}>Cancel</Button>*/}
+                                    </ModalFooter>
+                            </Modal>
+
                         </div>
 
                     </Card>
