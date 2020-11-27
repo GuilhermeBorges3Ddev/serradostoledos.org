@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Alert, Button, Card, CardTitle, FormGroup, Input, Label } from 'reactstrap';
 
 //Using the <<iconify.design>> library of React
@@ -16,15 +16,14 @@ import "./WritePublications.scss";
 
 export default function WritePublications(props) {
 
+    //State created to send the complaint or feedback if the reCAPTCHA is valid
+    const [disableButton, setDisableButton ] = useState(true);
+
     function onChange(value) {
-        console.log("Captcha value:", value);
-    }
-
-    const recaptchaRef = React.createRef();
-
-    let onSubmit = () => {
-        const recaptchaValue = recaptchaRef.current.getValue();
-        props.onSubmit(recaptchaValue);
+        console.log("Captcha value:", value.length);
+        if(value.length > 100) {
+            setDisableButton(false);
+        }
     }
 
     return (
@@ -77,9 +76,8 @@ export default function WritePublications(props) {
                             <Input type="textarea" name="text" id="exampleText" />
                         </FormGroup>
 
-                        <form onSubmit={onSubmit} >
+                        <form>
                             <ReCAPTCHA
-                                ref={recaptchaRef}
                                 sitekey="6Le8B-8ZAAAAAOhENHaSvlcOezYC0FlSMOjjhhMs"
                                 theme="dark"
                                 onChange={onChange}
@@ -87,7 +85,7 @@ export default function WritePublications(props) {
                         </form>
 
                         <div className="mt-4">
-                            <Button color="warning">
+                            <Button color="warning" disabled={disableButton} className={`${disableButton ? 'Send-Button-Disabled' : 'Send-Button-Enabled'}`}>
                                 <Icon icon={sendCircle} width={40} height={40} />
                                 {" "}Enviar denúncia/feedback
                             </Button>{' '}

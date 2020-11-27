@@ -21,6 +21,14 @@
     animation: blinker 1s linear infinite;
 }
 
+.Send-Button-Disabled {
+    cursor: not-allowed;
+}
+
+.Send-Button-Enabled {
+    cursor: pointer;
+}
+
 @keyframes blinker {
     50% {
       opacity: 0;
