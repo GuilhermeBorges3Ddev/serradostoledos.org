@@ -12,6 +12,8 @@ import {
 //Using the <<iconify.design>> library of React
 import { Icon } from '@iconify/react';
 import listStatus from '@iconify-icons/mdi/list-status';
+import paletteSwatchOutline from '@iconify-icons/mdi/palette-swatch-outline';
+import headAlertOutline from '@iconify-icons/mdi/head-alert-outline';
 
 /* 
     These <<react-custom-scrollbars>> library was imported to threat the backend return of N posts... 
@@ -53,29 +55,63 @@ export default function SeePublications() {
                             renderThumbVertical={props => <div {...props} className="thumb-horizontal"/>}
                         >
                                 <ListGroup>
+
                                 
-                                    <ListGroupItem className="bg-dark my-2">      
-                                        <ListGroupItemHeading className="d-flex justify-content-start">
-                                            List group item heading
+                                    <ListGroupItem className="Feedback my-2">      
+                                        <ListGroupItemHeading className="Post-Kind">
+                                            <div>
+                                                <Icon icon={paletteSwatchOutline} width={40} height={40} />
+                                            </div>
+                                            <div className="Post-Kind-Label text-uppercase">
+                                                <i>feedback</i>
+                                            </div>
                                         </ListGroupItemHeading>
-                                        <ListGroupItemText>
-                                            Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
+                                        <ListGroupItemText className="Post-Text">
+                                            <p>Deveriam ter visitas periódicas ao local para coleta de lixo nas trilhas e matas.</p>
+                                        </ListGroupItemText>
+                                    </ListGroupItem>
+
+
+                                    <ListGroupItem className="Complaint my-2">      
+                                        <ListGroupItemHeading className="Post-Kind">
+                                            <div>
+                                                <Icon icon={headAlertOutline} width={40} height={40} />
+                                            </div>
+                                            <div className="Post-Kind-Label text-uppercase">
+                                                <i>denúncia</i>
+                                            </div>
+                                        </ListGroupItemHeading>
+                                        <ListGroupItemText className="Post-Text">
+                                            <p>Os visitantes da cachoeira poderiam recolher seus próprios resíduos.</p>
+                                        </ListGroupItemText>
+                                    </ListGroupItem>
+
+
+                                    <ListGroupItem className="Complaint my-2">      
+                                        <ListGroupItemHeading className="Post-Kind">
+                                            <div>
+                                                <Icon icon={headAlertOutline} width={40} height={40} />
+                                            </div>
+                                            <div className="Post-Kind-Label text-uppercase">
+                                                <i>denúncia</i>
+                                            </div>
+                                        </ListGroupItemHeading>
+                                        <ListGroupItemText className="Post-Text">
+                                            <p>Não joguem lixo no local! Já tem muito por lá!</p>
                                         </ListGroupItemText>
                                     </ListGroupItem>
                                     
-                                    <ListGroupItem className="bg-dark my-2">
-                                        <ListGroupItemHeading className="d-flex justify-content-start">
-                                            List group item heading
+                                    <ListGroupItem className="Feedback my-2">      
+                                        <ListGroupItemHeading className="Post-Kind">
+                                            <div>
+                                                <Icon icon={paletteSwatchOutline} width={40} height={40} />
+                                            </div>
+                                            <div className="Post-Kind-Label text-uppercase">
+                                                <i>feedback</i>
+                                            </div>
                                         </ListGroupItemHeading>
-                                        <ListGroupItemText>
-                                            Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
-                                        </ListGroupItemText>
-                                    </ListGroupItem>
-                                    
-                                    <ListGroupItem className="bg-dark my-2">
-                                        <ListGroupItemHeading>List group item heading</ListGroupItemHeading>
-                                        <ListGroupItemText>
-                                        Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
+                                        <ListGroupItemText className="Post-Text">
+                                            <p>Poderia haver mais divulgação da importância de preservar a área da reserva aos itajubenses.</p>
                                         </ListGroupItemText>
                                     </ListGroupItem>
                             

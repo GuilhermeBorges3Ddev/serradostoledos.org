@@ -1,5 +1,37 @@
+/*
+    Those two styles bellow differences the kind of post showed
+*/
+.Complaint {
+    background-color: #721c24;
+}
+
+.Feedback {
+    background-color: #343a40;
+}
+
+/*
+   Generic styles for all posts
+*/
+.Post-Kind {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: 700;
+}
+
+.Post-Kind-Label {
+    margin-left: 22px;
+}
+
+.Post-Text {
+    font-size: 16px;
+}
+
+/*
+    These style DON'T have to be removed, becouse edits the react-custom-scrollbar
+*/
 .thumb-horizontal {
     background-color: #ffc107 !important;
     height: 50px;
-    opacity: 9999 !important;
+    opacity: 9999;
 }
