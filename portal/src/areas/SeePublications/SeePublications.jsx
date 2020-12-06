@@ -28,11 +28,11 @@ import "./SeePublications.scss";
 
 export default function SeePublications() {
 
-    const [allPosts, setAllPosts] = useState({});
+    const [allPosts, setAllPosts] = useState([]);
 
     const getPosts = () => {
             axios.get('https://serradostoledosapis.herokuapp.com/posts').then(res => {
-                setAllPosts(res?.data);
+                setAllPosts((res?.data));
             });
     }
 
@@ -44,8 +44,6 @@ export default function SeePublications() {
     return (
 
         <div className="Wrapper">
-
-            {console.log("2) " + JSON.stringify(allPosts))}
 
             <HomeNavbar className="home-navbar"/>
     
@@ -74,21 +72,23 @@ export default function SeePublications() {
                         >
                                 <ListGroup>
 
-                                    {allPosts.map((postItem) => {
-                                        return <ListGroupItem key={postItem._id} className={(postItem.contentType === "feedback") ? "Feedback my-2" : "Complaint my-2"}>      
-                                            <ListGroupItemHeading className="Post-Kind">
-                                                <div>
-                                                    <Icon icon={(postItem.contentType === "feedback") ? paletteSwatchOutline : headAlertOutline} width={40} height={40} />
-                                                </div>
-                                                <div className="Post-Kind-Label text-uppercase">
-                                                    <i>{postItem.contentType}</i>
-                                                </div>
-                                            </ListGroupItemHeading>
-                                            <ListGroupItemText className="Post-Text">
-                                                <p>{postItem.message}</p>
-                                            </ListGroupItemText>
-                                        </ListGroupItem>
-                                    })}
+                                    {
+                                        allPosts.map((postItem) => {
+                                            return <ListGroupItem key={postItem._id} className={(postItem.contentType === "feedback") ? "Feedback my-2" : "Complaint my-2"}>      
+                                                <ListGroupItemHeading className="Post-Kind">
+                                                    <div>
+                                                        <Icon icon={(postItem.contentType === "feedback") ? paletteSwatchOutline : headAlertOutline} width={40} height={40} />
+                                                    </div>
+                                                    <div className="Post-Kind-Label text-uppercase">
+                                                        <i>{postItem.contentType}</i>
+                                                    </div>
+                                                </ListGroupItemHeading>
+                                                <ListGroupItemText className="Post-Text">
+                                                    <p>{postItem.message}</p>
+                                                </ListGroupItemText>
+                                            </ListGroupItem>
+                                        })
+                                    }
                             
                                 </ListGroup>
 
