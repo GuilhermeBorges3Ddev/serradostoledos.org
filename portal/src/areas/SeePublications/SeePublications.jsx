@@ -31,21 +31,21 @@ export default function SeePublications() {
     const [allPosts, setAllPosts] = useState({});
 
     const getPosts = () => {
-        axios.get('https://serradostoledosapis.herokuapp.com/posts').then(res => {
-            setAllPosts(res?.data);
-        });
+            axios.get('https://serradostoledosapis.herokuapp.com/posts').then(res => {
+                setAllPosts(res?.data);
+            });
     }
 
     useEffect(() => {
-        getPosts()
+        setInterval(getPosts(),60000);
         console.log("1) " + JSON.stringify(allPosts))
-    }, [])
+    }, []);
 
     return (
 
         <div className="Wrapper">
 
-            
+            {console.log("2) " + JSON.stringify(allPosts))}
 
             <HomeNavbar className="home-navbar"/>
     
