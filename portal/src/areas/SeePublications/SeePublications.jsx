@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
 
 import { 
         Card, 
@@ -26,8 +27,25 @@ import HomeNavbar from '../../components/Navbar/HomeNavbar';
 import "./SeePublications.scss";
 
 export default function SeePublications() {
+
+    const [allPosts, setAllPosts] = useState({});
+
+    const getPosts = () => {
+        axios.get('https://serradostoledosapis.herokuapp.com/posts').then(res => {
+            setAllPosts(res?.data);
+        });
+    }
+
+    useEffect(() => {
+        getPosts()
+        console.log("1) " + JSON.stringify(allPosts))
+    }, [])
+
     return (
+
         <div className="Wrapper">
+
+            
 
             <HomeNavbar className="home-navbar"/>
     
