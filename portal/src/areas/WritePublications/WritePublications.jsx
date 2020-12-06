@@ -57,11 +57,6 @@ export default function WritePublications(props) {
         },
         {
             headers
-        })
-        .then((response) => {
-                console.log(response);
-        }, (error) => {
-                console.log(error);
         });
         
         console.log("Clicado");
