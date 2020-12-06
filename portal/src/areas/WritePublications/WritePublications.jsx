@@ -48,6 +48,16 @@ export default function WritePublications(props) {
         }
     }
 
+    //Getting the value of input-checkbox, if it's marked or not and setting a string to it
+    const [checkboxValue, setCheckboxValue] = useState("feedback");
+    
+    function getCheckboxContent(isChecked){
+        if(isChecked == true) {
+            console.log("--->" + isChecked)
+            setCheckboxValue("denunciation");
+        }
+    }
+
     return (
         <div className="Wrapper">
 
@@ -84,7 +94,11 @@ export default function WritePublications(props) {
 
                         <FormGroup id="Complaint-Or-Feedback" check>
                             <Label className="d-flex justify-content-between" check>
-                                <Input id="Complaint-Or-Feedback-Checkbox" type="checkbox" />{' '}
+                                <Input 
+                                    id="Complaint-Or-Feedback-Checkbox" 
+                                    type="checkbox" 
+                                    onChange={(e) => getCheckboxContent(e.target.checked)}
+                                />{' '}
                                 <div className="ml-4 mt-2">
                                     <h5>O conteúdo que escreverei é uma <u>denúncia</u>.</h5>
                                 </div>
