@@ -1,5 +1,6 @@
 /* eslint-disable eqeqeq */
 import React, { useEffect, useState } from 'react';
+import axios from "axios";
 
 import { 
         Alert, 
@@ -41,6 +42,12 @@ export default function WritePublications(props) {
     //The two states bellow was used on the reactstrap modal too
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
+
+    //After POST is done, user have to be redirected
+    function handlePostAndRedirect() {
+        setModal(false);
+        console.log("Clicado")
+    }
 
     function onChange(value) {
         //console.log("Captcha value:", value.length);
@@ -156,14 +163,19 @@ export default function WritePublications(props) {
                             </Button>{' '}
 
                             <Modal isOpen={modal} toggle={toggle} className={className}>
-                                <ModalHeader toggle={toggle}>Não desista de nós! </ModalHeader>
+                                <ModalHeader toggle={toggle}>Confirmação da postagem</ModalHeader>
                                     <ModalBody>
-                                            A funcionalidade de envio da sua denúncia ou feedback ainda está sendo desenvolvida.
-                                            A previsão de lançamento desta funcionalidade é para o dia 01/12/2020.
+                                        Ao confirmar o envio de sua denúncia ou feedback você será redirecionado 
+                                        para a listagem de denúncias, para vê-la junto de todas as outras. 
                                     </ModalBody>
                                     <ModalFooter>
-                                        <Button color="primary" onClick={toggle}>Ok,</Button>{' '}
-                                        <Button color="secondary" onClick={toggle}>Voltar para tela anterior</Button>*/}
+                                        <Button 
+                                            color="primary" 
+                                            onClick={ handlePostAndRedirect }
+                                        >
+                                            Confirmo o envio da postagem
+                                        </Button>{' '}
+                                        <Button color="secondary" onClick={toggle}>Voltar para tela anterior</Button>
                                     </ModalFooter>
                             </Modal>
 
