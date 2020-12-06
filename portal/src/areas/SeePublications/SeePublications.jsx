@@ -38,7 +38,7 @@ export default function SeePublications() {
 
     useEffect(() => {
         setInterval(getPosts(),60000);
-        console.log("1) " + JSON.stringify(allPosts))
+        //console.log("1) " + JSON.stringify(allPosts))
     }, []);
 
     return (
@@ -74,64 +74,21 @@ export default function SeePublications() {
                         >
                                 <ListGroup>
 
-                                
-                                    <ListGroupItem className="Feedback my-2">      
-                                        <ListGroupItemHeading className="Post-Kind">
-                                            <div>
-                                                <Icon icon={paletteSwatchOutline} width={40} height={40} />
-                                            </div>
-                                            <div className="Post-Kind-Label text-uppercase">
-                                                <i>feedback</i>
-                                            </div>
-                                        </ListGroupItemHeading>
-                                        <ListGroupItemText className="Post-Text">
-                                            <p>Deveriam ter visitas periódicas ao local para coleta de lixo nas trilhas e matas.</p>
-                                        </ListGroupItemText>
-                                    </ListGroupItem>
-
-
-                                    <ListGroupItem className="Complaint my-2">      
-                                        <ListGroupItemHeading className="Post-Kind">
-                                            <div>
-                                                <Icon icon={headAlertOutline} width={40} height={40} />
-                                            </div>
-                                            <div className="Post-Kind-Label text-uppercase">
-                                                <i>denúncia</i>
-                                            </div>
-                                        </ListGroupItemHeading>
-                                        <ListGroupItemText className="Post-Text">
-                                            <p>Os visitantes da cachoeira poderiam recolher seus próprios resíduos.</p>
-                                        </ListGroupItemText>
-                                    </ListGroupItem>
-
-
-                                    <ListGroupItem className="Complaint my-2">      
-                                        <ListGroupItemHeading className="Post-Kind">
-                                            <div>
-                                                <Icon icon={headAlertOutline} width={40} height={40} />
-                                            </div>
-                                            <div className="Post-Kind-Label text-uppercase">
-                                                <i>denúncia</i>
-                                            </div>
-                                        </ListGroupItemHeading>
-                                        <ListGroupItemText className="Post-Text">
-                                            <p>Não joguem lixo no local! Já tem muito por lá!</p>
-                                        </ListGroupItemText>
-                                    </ListGroupItem>
-                                    
-                                    <ListGroupItem className="Feedback my-2">      
-                                        <ListGroupItemHeading className="Post-Kind">
-                                            <div>
-                                                <Icon icon={paletteSwatchOutline} width={40} height={40} />
-                                            </div>
-                                            <div className="Post-Kind-Label text-uppercase">
-                                                <i>feedback</i>
-                                            </div>
-                                        </ListGroupItemHeading>
-                                        <ListGroupItemText className="Post-Text">
-                                            <p>Poderia haver mais divulgação da importância de preservar a área da reserva aos itajubenses.</p>
-                                        </ListGroupItemText>
-                                    </ListGroupItem>
+                                    {allPosts.map((postItem) => {
+                                        return <ListGroupItem key={postItem._id} className={(postItem.contentType === "feedback") ? "Feedback my-2" : "Complaint my-2"}>      
+                                            <ListGroupItemHeading className="Post-Kind">
+                                                <div>
+                                                    <Icon icon={(postItem.contentType === "feedback") ? paletteSwatchOutline : headAlertOutline} width={40} height={40} />
+                                                </div>
+                                                <div className="Post-Kind-Label text-uppercase">
+                                                    <i>{postItem.contentType}</i>
+                                                </div>
+                                            </ListGroupItemHeading>
+                                            <ListGroupItemText className="Post-Text">
+                                                <p>{postItem.message}</p>
+                                            </ListGroupItemText>
+                                        </ListGroupItem>
+                                    })}
                             
                                 </ListGroup>
 
