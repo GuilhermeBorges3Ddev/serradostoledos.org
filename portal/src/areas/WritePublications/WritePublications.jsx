@@ -45,8 +45,26 @@ export default function WritePublications(props) {
 
     //After POST is done, user have to be redirected
     function handlePostAndRedirect() {
-        setModal(false);
-        console.log("Clicado")
+
+        const headers = {
+            'Content-Type': 'application/json'
+        };
+
+        axios.post('https://serradostoledosapis.herokuapp.com/create_post', {
+            'contentType': checkboxValue,
+            'message': inputTextValue
+        },
+        {
+            headers
+        })
+        .then((response) => {
+                console.log(response);
+        }, (error) => {
+                console.log(error);
+        });
+        
+        console.log("Clicado");
+        setTimeout(setModal(false), 3000);
     }
 
     function onChange(value) {
