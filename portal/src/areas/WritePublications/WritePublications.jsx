@@ -1,5 +1,5 @@
 /* eslint-disable eqeqeq */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { 
         Alert, 
@@ -66,6 +66,15 @@ export default function WritePublications(props) {
             setInputTextValue(textWrote);
         }
     }
+
+    //Monitoring the two states what have to be checked to unblocked the send btn
+    const [enableSendBtn, setEnableSendBtn] = useState(false);
+
+    useEffect(() => {
+        if((disableButton == false)&&(inputTextValue != "empty")){
+            setEnableSendBtn(true)
+        }
+    }, [disableButton, inputTextValue])
     
 
     return (
@@ -136,11 +145,10 @@ export default function WritePublications(props) {
                         </form>
 
                         <div className="mt-4">
-                            {console.log("disabledButton - inputTextValue - checkboxValue :::: "  + disableButton + " - " +  inputTextValue + " - " + checkboxValue)}
                             <Button 
                                 color="warning" 
-                                disabled={disableButton} 
-                                className={`${(disableButton && inputTextValue === "empty") ? 'Send-Button-Disabled' : 'Send-Button-Enabled'}`}
+                                disabled={(enableSendBtn == false) ? true : false} 
+                                className={`${(enableSendBtn == false) ? 'Send-Button-Disabled' : 'Send-Button-Enabled'}`}
                                 onClick={toggle}
                             >    
                                 <Icon icon={sendCircle} width={40} height={40} />
@@ -155,7 +163,7 @@ export default function WritePublications(props) {
                                     </ModalBody>
                                     <ModalFooter>
                                         <Button color="primary" onClick={toggle}>Ok,</Button>{' '}
-                                        {/*<Button color="secondary" onClick={toggle}>Cancel</Button>*/}
+                                        <Button color="secondary" onClick={toggle}>Voltar para tela anterior</Button>*/}
                                     </ModalFooter>
                             </Modal>
 
