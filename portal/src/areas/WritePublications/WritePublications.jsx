@@ -58,13 +58,13 @@ export default function WritePublications(props) {
         {
             headers
         });
-        
-        console.log("Clicado");
-        setTimeout(setModal(false), 3000);
+        setTimeout(setModal(false), 1000);
+        setTimeout(function() {
+            window.location.href = "https://www.serradostoledos.org/ler-posts";
+        }, 1000);
     }
 
     function onChange(value) {
-        //console.log("Captcha value:", value.length);
         if(value.length > 100) {
             setTimeout(setDisableButton(false), 3000);
         }
