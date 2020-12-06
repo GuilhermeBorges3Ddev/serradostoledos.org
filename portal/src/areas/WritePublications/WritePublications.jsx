@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+/* eslint-disable eqeqeq */
+import React, { useEffect, useState } from 'react';
+import axios from "axios";
 
 import { 
         Alert, 
@@ -41,12 +43,60 @@ export default function WritePublications(props) {
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
 
+    //After POST is done, user have to be redirected
+    function handlePostAndRedirect() {
+
+        const headers = {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        };
+
+        axios.post('https://serradostoledosapis.herokuapp.com/create_post', {
+            'contentType': checkboxValue,
+            'message': inputTextValue
+        },
+        {
+            headers
+        });
+        setTimeout(setModal(false), 1000);
+        setTimeout(function() {
+            window.location.href = "https://www.serradostoledos.org/ler-posts";
+        }, 1000);
+    }
+
     function onChange(value) {
-        //console.log("Captcha value:", value.length);
         if(value.length > 100) {
             setTimeout(setDisableButton(false), 3000);
         }
     }
+
+    //Getting the value of input-checkbox, if it's marked or not and setting a string to it
+    const [checkboxValue, setCheckboxValue] = useState("feedback");
+    
+    function getCheckboxContent(isChecked){
+        if(isChecked == true) {
+            setCheckboxValue("denunciation");
+        }
+    }
+
+    //The state and his handler bellow makes the textarea text be saved to be send later
+    const [inputTextValue, setInputTextValue] = useState("empty");
+
+    function handlerTextarea(textWrote){
+        if(textWrote.length > 2){
+            setInputTextValue(textWrote);
+        }
+    }
+
+    //Monitoring the two states what have to be checked to unblocked the send btn
+    const [enableSendBtn, setEnableSendBtn] = useState(false);
+
+    useEffect(() => {
+        if((disableButton == false)&&(inputTextValue != "empty")){
+            setEnableSendBtn(true)
+        }
+    }, [disableButton, inputTextValue])
+    
 
     return (
         <div className="Wrapper">
@@ -76,7 +126,7 @@ export default function WritePublications(props) {
                                     <Icon className="User-Disclaimer-Icon" icon={alertIcon} width={40} height={40} />
                                 </div>
                                 <span>
-                                    Toda denúncia ou feedback realizado é completamente anônimo, 
+                                    Toda denúncia ou feedback realizado deixará seu nome completamente anônimo, 
                                     fique à vontade para expressar suas idéias da forma que quiser.
                                 </span>
                             </h6>
@@ -84,7 +134,11 @@ export default function WritePublications(props) {
 
                         <FormGroup id="Complaint-Or-Feedback" check>
                             <Label className="d-flex justify-content-between" check>
-                                <Input id="Complaint-Or-Feedback-Checkbox" type="checkbox" />{' '}
+                                <Input 
+                                    id="Complaint-Or-Feedback-Checkbox" 
+                                    type="checkbox" 
+                                    onChange={(e) => getCheckboxContent(e.target.checked)}
+                                />{' '}
                                 <div className="ml-4 mt-2">
                                     <h5>O conteúdo que escreverei é uma <u>denúncia</u>.</h5>
                                 </div>
@@ -95,7 +149,12 @@ export default function WritePublications(props) {
                             <Label className="d-flex align-self-start"for="exampleText">
                                 <h5> - Digite aqui o conteúdo de sua denúncia/feedback: </h5>
                             </Label>
-                            <Input type="textarea" name="text" id="exampleText" />
+                            <Input 
+                                id="exampleText" 
+                                type="textarea" 
+                                name="text" 
+                                onChange={(e) => handlerTextarea(e.target.value)}
+                            />
                         </FormGroup>
 
                         <form>
@@ -107,11 +166,10 @@ export default function WritePublications(props) {
                         </form>
 
                         <div className="mt-4">
-                            
                             <Button 
                                 color="warning" 
-                                disabled={disableButton} 
-                                className={`${disableButton ? 'Send-Button-Disabled' : 'Send-Button-Enabled'}`}
+                                disabled={(enableSendBtn == false) ? true : false} 
+                                className={`${(enableSendBtn == false) ? 'Send-Button-Disabled' : 'Send-Button-Enabled'}`}
                                 onClick={toggle}
                             >    
                                 <Icon icon={sendCircle} width={40} height={40} />
@@ -119,14 +177,19 @@ export default function WritePublications(props) {
                             </Button>{' '}
 
                             <Modal isOpen={modal} toggle={toggle} className={className}>
-                                <ModalHeader toggle={toggle}>Não desista de nós! </ModalHeader>
+                                <ModalHeader toggle={toggle}>Confirmação da postagem</ModalHeader>
                                     <ModalBody>
-                                            A funcionalidade de envio da sua denúncia ou feedback ainda está sendo desenvolvida.
-                                            A previsão de lançamento desta funcionalidade é para o dia 01/12/2020.
+                                        Ao confirmar o envio de sua denúncia ou feedback você será redirecionado 
+                                        para a listagem de denúncias, para vê-la junto de todas as outras. 
                                     </ModalBody>
                                     <ModalFooter>
-                                        <Button color="primary" onClick={toggle}>Ok,</Button>{' '}
-                                        {/*<Button color="secondary" onClick={toggle}>Cancel</Button>*/}
+                                        <Button 
+                                            color="primary" 
+                                            onClick={ handlePostAndRedirect }
+                                        >
+                                            Confirmo o envio da postagem
+                                        </Button>{' '}
+                                        <Button color="secondary" onClick={toggle}>Voltar para tela anterior</Button>
                                     </ModalFooter>
                             </Modal>
 
