@@ -47,7 +47,8 @@ export default function WritePublications(props) {
     function handlePostAndRedirect() {
 
         const headers = {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
         };
 
         axios.post('https://serradostoledosapis.herokuapp.com/create_post', {
