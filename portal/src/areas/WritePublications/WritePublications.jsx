@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React, { useState } from 'react';
 
 import { 
@@ -53,10 +54,19 @@ export default function WritePublications(props) {
     
     function getCheckboxContent(isChecked){
         if(isChecked == true) {
-            console.log("--->" + isChecked)
             setCheckboxValue("denunciation");
         }
     }
+
+    //The state and his handler bellow makes the textarea text be saved to be send later
+    const [inputTextValue, setInputTextValue] = useState("empty");
+
+    function handlerTextarea(textWrote){
+        if(textWrote.length > 2){
+            setInputTextValue(textWrote);
+        }
+    }
+    
 
     return (
         <div className="Wrapper">
@@ -86,7 +96,7 @@ export default function WritePublications(props) {
                                     <Icon className="User-Disclaimer-Icon" icon={alertIcon} width={40} height={40} />
                                 </div>
                                 <span>
-                                    Toda denúncia ou feedback realizado é completamente anônimo, 
+                                    Toda denúncia ou feedback realizado deixará seu nome completamente anônimo, 
                                     fique à vontade para expressar suas idéias da forma que quiser.
                                 </span>
                             </h6>
@@ -109,7 +119,12 @@ export default function WritePublications(props) {
                             <Label className="d-flex align-self-start"for="exampleText">
                                 <h5> - Digite aqui o conteúdo de sua denúncia/feedback: </h5>
                             </Label>
-                            <Input type="textarea" name="text" id="exampleText" />
+                            <Input 
+                                id="exampleText" 
+                                type="textarea" 
+                                name="text" 
+                                onChange={(e) => handlerTextarea(e.target.value)}
+                            />
                         </FormGroup>
 
                         <form>
@@ -121,11 +136,11 @@ export default function WritePublications(props) {
                         </form>
 
                         <div className="mt-4">
-                            
+                            {console.log("disabledButton - inputTextValue - checkboxValue :::: "  + disableButton + " - " +  inputTextValue + " - " + checkboxValue)}
                             <Button 
                                 color="warning" 
                                 disabled={disableButton} 
-                                className={`${disableButton ? 'Send-Button-Disabled' : 'Send-Button-Enabled'}`}
+                                className={`${(disableButton && inputTextValue === "empty") ? 'Send-Button-Disabled' : 'Send-Button-Enabled'}`}
                                 onClick={toggle}
                             >    
                                 <Icon icon={sendCircle} width={40} height={40} />
